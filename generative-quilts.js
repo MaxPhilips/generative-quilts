@@ -17,8 +17,10 @@ function draw() {
         blockRailFence(i, j, grid, webColor(), webColor(), webColor());
       } else if (block == 'hst') {
         blockHST(i, j, grid, webColor(), webColor());
+        webColor();
       } else if (block == 'qst') {
         blockQST(i, j, grid, webColor(), webColor());
+        webColor();
       }
     }
   }
