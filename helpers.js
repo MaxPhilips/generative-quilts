@@ -1,0 +1,100 @@
+let xmur3Input, seed;
+randomInitialize();
+
+function randomInitialize(base64, log = true) {
+  // set xmur3Input to method arg, falling back to random 32-character base64 string
+  xmur3Input = typeof base64 !== 'undefined' ? base64 : base64String(32);
+
+  // convert base64 value to a 32-bit hash value
+  seed = xmur3(xmur3Input);
+
+  if (log) {
+    console.log('xmur3Input: ' + xmur3Input);
+    console.log('seed: ' + seed);
+  }
+}
+
+function redrawRandomly() {
+  randomInitialize();
+  redraw();
+}
+
+function redrawSystematically() {
+  randomInitialize(xmur3Input, false);
+  redraw();
+}
+
+/**
+ * Controls the client.
+ */
+function keyPressed() {
+  if (keyCode === RIGHT_ARROW) {
+    redrawRandomly();
+  } else if (keyCode === 83) {
+    // 'S' key
+    saveCanvas(filename(), 'png');
+  }
+}
+
+/**
+ * Returns a filename.
+ */
+function filename() {
+  return [filenameTitle(), filenameDate(), xmur3Input].join('_');
+}
+
+/**
+ * Returns the artwork title for filenames.
+ */
+function filenameTitle() {
+  return location.pathname.split('/').slice(-2).reverse().pop();
+}
+
+/**
+ * Formats a date for filenames.
+ */
+function filenameDate() {
+  var d = new Date();
+
+  return [d.getFullYear(), ('0' + (d.getMonth() + 1)).slice(-2), ('0' + d.getDate()).slice(-2)].join('-');
+}
+
+/**
+ * Returns a random-enough base64 string.
+ * https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+ *
+ * @param {number} length The length of string to generate
+ */
+function base64String(length) {
+  var result = Array(length);
+  var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+
+  for (var i = 0; i < length; i++) {
+    result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+  }
+
+  return result.join('');
+}
+
+/**
+ * Hash function that generates 32-bit seeds from string input.
+ * https://github.com/bryc/code/blob/master/jshash/PRNGs.md
+ *
+ * @param {string} str A string to create a seed from
+ */
+function xmur3(str) {
+  for (var i = 0, h = 1779033703 ^ str.length; i < str.length; i++) {
+    h = Math.imul(h ^ str.charCodeAt(i), 3432918353),
+    h = h << 13 | h >>> 19;
+  }
+
+  h = Math.imul(h ^ h >>> 16, 2246822507),
+  h = Math.imul(h ^ h >>> 13, 3266489909);
+
+  return (h ^= h >>> 16) >>> 0;
+}
+
+function webColor() {
+  return color(random(['AliceBlue','AntiqueWhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'BlanchedAlmond', 'Blue', 'BlueViolet', 'Brown', 'BurlyWood', 'CadetBlue', 'Chartreuse', 'Chocolate', 'Coral', 'CornflowerBlue', 'Cornsilk', 'Crimson', 'Cyan', 'DarkBlue', 'DarkCyan', 'DarkGoldenRod', 'DarkGray', 'DarkGrey', 'DarkGreen', 'DarkKhaki', 'DarkMagenta', 'DarkOliveGreen', 'Darkorange', 'DarkOrchid', 'DarkRed', 'DarkSalmon', 'DarkSeaGreen', 'DarkSlateBlue', 'DarkSlateGray', 'DarkSlateGrey', 'DarkTurquoise', 'DarkViolet', 'DeepPink', 'DeepSkyBlue', 'DimGray', 'DimGrey', 'DodgerBlue', 'FireBrick', 'FloralWhite', 'ForestGreen', 'Fuchsia', 'Gainsboro', 'GhostWhite', 'Gold', 'GoldenRod', 'Gray', 'Grey', 'Green', 'GreenYellow', 'HoneyDew', 'HotPink', 'IndianRed ', 'Indigo ', 'Ivory', 'Khaki', 'Lavender', 'LavenderBlush', 'LawnGreen', 'LemonChiffon', 'LightBlue', 'LightCoral', 'LightCyan', 'LightGoldenRodYellow', 'LightGray', 'LightGrey', 'LightGreen', 'LightPink', 'LightSalmon', 'LightSeaGreen', 'LightSkyBlue', 'LightSlateGray', 'LightSlateGrey', 'LightSteelBlue', 'LightYellow', 'Lime', 'LimeGreen', 'Linen', 'Magenta', 'Maroon', 'MediumAquaMarine', 'MediumBlue', 'MediumOrchid', 'MediumPurple', 'MediumSeaGreen', 'MediumSlateBlue', 'MediumSpringGreen', 'MediumTurquoise', 'MediumVioletRed', 'MidnightBlue', 'MintCream', 'MistyRose', 'Moccasin', 'NavajoWhite', 'Navy', 'OldLace', 'Olive', 'OliveDrab', 'Orange', 'OrangeRed', 'Orchid', 'PaleGoldenRod', 'PaleGreen', 'PaleTurquoise', 'PaleVioletRed', 'PapayaWhip', 'PeachPuff', 'Peru', 'Pink', 'Plum', 'PowderBlue', 'Purple', 'Red', 'RosyBrown', 'RoyalBlue', 'SaddleBrown', 'Salmon', 'SandyBrown', 'SeaGreen', 'SeaShell', 'Sienna', 'Silver', 'SkyBlue', 'SlateBlue', 'SlateGray', 'SlateGrey', 'Snow', 'SpringGreen', 'SteelBlue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'WhiteSmoke', 'Yellow', 'YellowGreen']));
+}
