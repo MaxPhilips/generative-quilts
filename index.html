@@ -5,13 +5,42 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
     <script src="helpers.js"></script>
     <script src="generative-quilts.js"></script>
+    <script src="quilt-blocks.js"></script>
+    <link rel="stylesheet" href="generative-quilts.css">
   </head>
   <body>
     <main></main>
-    <button type="button" onclick="block='';draw()">clear</button>
-    <button type="button" onclick="block='rail fence';draw()">rail fence</button>
-    <button type="button" onclick="block='hst';draw()">hst</button>
-    <button type="button" onclick="block='qst';draw()">qst</button>
-    <button type="button" onclick="redrawRandomly()">new colors</button>
+    <p>select which quilt blocks to include, then lay out a quilt</p>
+    <span class="checkbox">
+      <input type="checkbox" id="hst" name="hst" value="">
+      <label for="hst">hst</label>
+    </span>
+    <span class="checkbox">
+      <input type="checkbox" id="qst" name="qst" value="">
+      <label for="qst">qst</label>
+    </span>
+    <span class="checkbox">
+      <input type="checkbox" id="four_patches" name="four_patches" value="">
+      <label for="four_patches">four patches</label>
+    </span>
+    <span class="checkbox">
+      <input type="checkbox" id="nine_patches" name="nine_patches" value="">
+      <label for="nine_patches">nine patches</label>
+    </span>
+    <span class="checkbox">
+      <input type="checkbox" id="flying_geese" name="flying_geese" value="">
+      <label for="flying_geese">flying geese</label>
+    </span>
+    <span class="checkbox">
+      <input type="checkbox" id="square_in_a_square" name="square_in_a_square" value="">
+      <label for="square_in_a_square">square in a square</label>
+    </span>
+    <span class="checkbox">
+      <input type="checkbox" id="triangle_in_a_square" name="triangle_in_a_square" value="">
+      <label for="triangle_in_a_square">triangle in a square</label>
+    </span>
+    <p>
+      <button type="button" onclick="redrawRandomly()">quilt</button>
+    </p>
   </body>
 </html>
