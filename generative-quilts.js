@@ -3,33 +3,14 @@ let grid = 80, block = '';
 function setup() {
   createCanvas(8 * grid, 8 * grid);
   noLoop();
+  noStroke();
 
-  colorMode(HSB);
+  angleMode(DEGREES);
 }
 
 function draw() {
   clear();
   randomSeed(seed);
-
-  // for (var i = 0; i < 8 * grid; i += grid) {
-  //   for (var j = 0; j < 8 * grid; j += grid) {
-  //     if (block == 'hst') {
-  //       blockHST(i, j, grid, webColor(), webColor());
-  //     } else if (block == 'qst') {
-  //       blockQST(i, j, grid, webColor(), webColor());
-  //     } else if (block == 'four_patches') {
-  //       blockFourPatches(i, j, grid, webColor(), webColor());
-  //     } else if (block == 'nine_patches') {
-  //       blockNinePatches(i, j, grid, webColor(), webColor());
-  //     } else if (block == 'flying_geese') {
-  //       blockFlyingGeese(i, j, grid, webColor(), webColor());
-  //     } else if (block == 'square_in_a_square') {
-  //       blockSquareInASquare(i, j, grid, webColor(), webColor());
-  //     } else if (block == 'triangle_in_a_square') {
-  //       blockTriangleInASquare(i, j, grid, webColor(), webColor());
-  //     }
-  //   }
-  // }
 
   var blocks = [];
 
@@ -57,25 +38,29 @@ function draw() {
 
   var blockType;
 
-  for (var i = 0; i < 8 * grid; i += grid) {
-    for (var j = 0; j < 8 * grid; j += grid) {
+  for (var j = 0; j < width; j += grid) {
+    for (var i = 0; i < width; i += grid) {
       blockType = random(blocks);
 
       if (blockType == 'hst') {
-        blockHST(i, j, grid, webColor(), webColor());
+        blockHST(i, j, grid, randomDirection(), webColor(), webColor());
       } else if (blockType == 'qst') {
-        blockQST(i, j, grid, webColor(), webColor());
+        blockQST(i, j, grid, randomDirection(), webColor(), webColor());
       } else if (blockType == 'four_patches') {
-        blockFourPatches(i, j, grid, webColor(), webColor());
+        blockFourPatches(i, j, grid, randomDirection(), webColor(), webColor());
       } else if (blockType == 'nine_patches') {
-        blockNinePatches(i, j, grid, webColor(), webColor());
+        blockNinePatches(i, j, grid, randomDirection(), webColor(), webColor());
       } else if (blockType == 'flying_geese') {
-        blockFlyingGeese(i, j, grid, webColor(), webColor());
+        blockFlyingGeese(i, j, grid, randomDirection(), webColor(), webColor());
       } else if (blockType == 'square_in_a_square') {
-        blockSquareInASquare(i, j, grid, webColor(), webColor());
+        blockSquareInASquare(i, j, grid, randomDirection(), webColor(), webColor());
       } else if (blockType == 'triangle_in_a_square') {
-        blockTriangleInASquare(i, j, grid, webColor(), webColor());
+        blockTriangleInASquare(i, j, grid, randomDirection(), webColor(), webColor());
       }
     }
   }
+}
+
+function randomDirection() {
+  return random(['NORTH', 'EAST', 'SOUTH', 'WEST']);
 }
