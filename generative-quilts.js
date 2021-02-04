@@ -12,7 +12,7 @@ function draw() {
   clear();
   randomSeed(seed);
 
-  var blocks = [];
+  var blocks = [], blockType, primaryColors = [webColor(), webColor(), webColor(), webColor()], secondaryColors = [webColor(), webColor(), webColor(), webColor()];
 
   if (document.querySelector('#hst').checked) {
     blocks.push('hst');
@@ -36,26 +36,24 @@ function draw() {
     blocks.push('triangle_in_a_square');
   }
 
-  var blockType;
-
   for (var j = 0; j < width; j += grid) {
     for (var i = 0; i < width; i += grid) {
       blockType = random(blocks);
 
       if (blockType == 'hst') {
-        blockHST(i, j, grid, randomDirection(), webColor(), webColor());
+        blockHST(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'qst') {
-        blockQST(i, j, grid, randomDirection(), webColor(), webColor());
+        blockQST(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'four_patches') {
-        blockFourPatches(i, j, grid, randomDirection(), webColor(), webColor());
+        blockFourPatches(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'nine_patches') {
-        blockNinePatches(i, j, grid, randomDirection(), webColor(), webColor());
+        blockNinePatches(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'flying_geese') {
-        blockFlyingGeese(i, j, grid, randomDirection(), webColor(), webColor());
+        blockFlyingGeese(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'square_in_a_square') {
-        blockSquareInASquare(i, j, grid, randomDirection(), webColor(), webColor());
+        blockSquareInASquare(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'triangle_in_a_square') {
-        blockTriangleInASquare(i, j, grid, randomDirection(), webColor(), webColor());
+        blockTriangleInASquare(i, j, grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       }
     }
   }
@@ -63,4 +61,8 @@ function draw() {
 
 function randomDirection() {
   return random(['NORTH', 'EAST', 'SOUTH', 'WEST']);
+}
+
+function gaussianIndex() {
+  return min(3, floor(abs(randomGaussian()) * 4));
 }
