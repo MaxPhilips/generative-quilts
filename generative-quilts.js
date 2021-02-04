@@ -57,6 +57,36 @@ function draw() {
       }
     }
   }
+
+  if (!document.querySelector('#use_big_blocks').checked) {
+    return;
+  }
+
+  for (var j = 0; j < width; j += 2 * grid) {
+    for (var i = 0; i < width; i += 2 * grid) {
+      if (random() > 0.1) {
+        continue;
+      }
+
+      blockType = random(blocks);
+
+      if (blockType == 'hst') {
+        blockHST(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'qst') {
+        blockQST(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'four_patches') {
+        blockFourPatches(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'nine_patches') {
+        blockNinePatches(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'flying_geese') {
+        blockFlyingGeese(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'square_in_a_square') {
+        blockSquareInASquare(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'triangle_in_a_square') {
+        blockTriangleInASquare(i, j, 2 * grid, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      }
+    }
+  }
 }
 
 function randomDirection() {
