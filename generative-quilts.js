@@ -12,8 +12,13 @@ function draw() {
   clear();
   randomSeed(seed);
 
-  primaryColors = [webColor(), webColor(), webColor(), webColor()];
-  secondaryColors = [webColor(), webColor(), webColor(), webColor()];
+  if (document.querySelector('#randomColors').checked) {
+    primaryColors = [webColor(), webColor(), webColor(), webColor()];
+    secondaryColors = [webColor(), webColor(), webColor(), webColor()];
+  } else if (document.querySelector('#customColors').checked) {
+    primaryColors = [color(document.querySelector('#primaryColor1').value), color(document.querySelector('#primaryColor2').value), color(document.querySelector('#primaryColor3').value), color(document.querySelector('#primaryColor4').value)];
+    secondaryColors = [color(document.querySelector('#secondaryColor1').value), color(document.querySelector('#secondaryColor2').value), color(document.querySelector('#secondaryColor3').value), color(document.querySelector('#secondaryColor4').value)];
+  }
 
   if (document.querySelector('#hst').checked) {
     blocks.push('hst');

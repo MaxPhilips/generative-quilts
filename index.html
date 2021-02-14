@@ -50,10 +50,31 @@
         <div class="control">
           <input type="number" id="columns" name="columns" min="1" max="8" value="8">
           <label for="columns">columns</label>
-        </div>
-        <div class="control">
           <input type="number" id="rows" name="rows" min="1" max="8" value="8">
           <label for="rows">rows</label>
+        </div>
+        <p>colors</p>
+        <div class="control">
+          <input type="radio" id="randomColors" name="colors" checked>
+          <label for="randomColors">random</label><br>
+          <input type="radio" id="customColors" name="colors">
+          <label for="customColors">custom</label><br>
+          <div class="control">
+            <input type="color" id="primaryColor1" name="primaryColor1" value="#000000">
+            <input type="color" id="secondaryColor1" name="secondaryColor1" value="#000000">
+          </div>
+          <div class="control">
+            <input type="color" id="primaryColor2" name="primaryColor2" value="#000000">
+            <input type="color" id="secondaryColor2" name="secondaryColor2" value="#000000">
+          </div>
+          <div class="control">
+            <input type="color" id="primaryColor3" name="primaryColor3" value="#000000">
+            <input type="color" id="secondaryColor3" name="secondaryColor3" value="#000000">
+          </div>
+          <div class="control">
+            <input type="color" id="primaryColor4" name="primaryColor4" value="#000000">
+            <input type="color" id="secondaryColor4" name="secondaryColor4" value="#000000">
+          </div>
         </div>
         <p>
           <button type="button" onclick="redrawRandomly()">quilt</button>
