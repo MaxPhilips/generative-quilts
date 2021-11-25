@@ -1,4 +1,4 @@
-let grid = 80, blocks = [], blockType, primaryColors, secondaryColors;
+let grid = 80, blocks, blockType, primaryColors, secondaryColors;
 
 function setup() {
   createCanvas(8 * grid, 8 * grid);
@@ -11,6 +11,8 @@ function setup() {
 function draw() {
   clear();
   randomSeed(seed);
+
+  blocks = [];
 
   if (document.querySelector('#randomColors').checked) {
     primaryColors = [webColor(), webColor(), webColor(), webColor()];
