@@ -110,6 +110,21 @@ function blockTriangleInASquare(x, y, side, direction, primaryColor, secondaryCo
   pop();
 }
 
+function blockQuarterCircle(x, y, side, direction, primaryColor, secondaryColor) {
+  push();
+
+  translate(x, y);
+  rotateAndTranslate(direction, side);
+
+  fill(primaryColor);
+  square(0, 0, side);
+
+  fill(secondaryColor);
+  arc(0 + side, 0 + side, side, side, 180, 270);
+
+  pop();
+}
+
 function rotateAndTranslate(direction, side) {
   switch(direction) {
     case 'NORTH':

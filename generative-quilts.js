@@ -41,6 +41,9 @@ function draw() {
   if (document.querySelector('#triangle_in_a_square').checked) {
     blocks.push('triangle_in_a_square');
   }
+  if (document.querySelector('#quarter_circle').checked) {
+    blocks.push('quarter_circle');
+  }
 
   drawBlocks(grid);
 
@@ -74,6 +77,8 @@ function drawBlocks(blockSize, skipBlocks = false) {
         blockSquareInASquare(i, j, blockSize, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       } else if (blockType == 'triangle_in_a_square') {
         blockTriangleInASquare(i, j, blockSize, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
+      } else if (blockType == 'quarter_circle') {
+        blockQuarterCircle(i, j, blockSize, randomDirection(), primaryColors[gaussianIndex()], secondaryColors[gaussianIndex()]);
       }
     }
   }
